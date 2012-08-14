@@ -1,0 +1,51 @@
+doctype 5
+html
+  head
+    title Socket.IO on dotCloud
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+    script(type="text/javascript", src='/js/jquery-1.7.2.min.js')
+    script(type="text/javascript", src='/js/bootstrap.min.js')
+    script(type="text/javascript", src='/socket.io/socket.io.js')
+    script(type="text/javascript", src='/js/clouds.js')
+    script(type="text/javascript")
+        $(".collapse").collapse();
+        $('.dropdown-toggle').dropdown();
+
+    body
+    div.navbar.navbar-fixed-top
+        div.navbar-inner
+            div.container
+                a.btn.btn-navbar(data-toggle='collapse', data-target=".nav-collapse")
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+            
+                a.brand(href='/') Socket.io on dotCloud
+               
+                div.nav-collapse
+
+                    ul.nav.pull-right
+                        li.divider-vertical
+                        li.dropdown
+                            a.dropdown-toggle(href="#", data-toggle="dropdown") Documentation
+                                b.caret
+
+                            ul.dropdown-menu
+                                lin
+                                    a(target="_blank", href="http://socket.io/") Socket.IO
+                                li
+                                    a(target="_blank", href="https://github.com/learnboost/socket.io/#express-3x") Socket.IO and Express 3
+                                li
+                                    a(target="_blank", href="http://github.com/visionmedia/jade#readme") Jade doc
+                                li
+                                    a(target="_blank", href="http://twitter.github.com/bootstrap") Bootstrap 
+                                li 
+                                    a(target="_blank", href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/map") Array.map()
+
+                                li.divider
+                                li
+                                    a(target="_blank", href="http://nodejs.org/api/util.html#util_util_inspect_object_showhidden_depth_colors") Node inspect
+    div.container(style="margin-top: 100px")
+        block content
