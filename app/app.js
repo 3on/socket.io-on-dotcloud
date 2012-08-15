@@ -61,12 +61,8 @@ var clouds = {};
 var move = function(pos) {
   var socket = this;
 
-  //tools.log(pos);
-
   clouds[socket.id].pos.x = pos.x;
   clouds[socket.id].pos.y = pos.y;
-
-  // refresh ? ----------- FIXME
 }
 
 // callback for websocket disconnetion
@@ -76,7 +72,6 @@ var disconnetion = function() {
   tools.log("Lost connection: " + socket.id);
   delete clouds[socket.id];
 
-  // refresh ? ----------- FIXME
 };
 
 // callback for new websocket connection
@@ -88,8 +83,6 @@ var connection = function(socket){
     socket: socket,
     pos: { x: 0, y: 0 }
   };
-
-  // refresh ? ----------- FIXME
 
   // bind move event
   socket.on('move', move);
@@ -111,7 +104,6 @@ var posOnly = function(cloud, id) {
   return {id: id, x: cloud.pos.x, y: cloud.pos.y};
 };
 
-//
 setInterval(function(){
   for (var id in clouds) {
     clouds[id].socket.emit('update', _.map(clouds, posOnly)); 
