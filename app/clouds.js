@@ -1,13 +1,17 @@
 var clouds = {};
 
-exports.addPlayer = function(id, pos) {
-	
+exports.addCloud = function(id, pos) {
+	clouds[id] = pos;
 };
 
-exports.removePlayer = function(id, pos) {
-
+exports.removeCloud = function(id) {
+	delete clouds.id;
 }
 
-exports.updatePlayer = function(id, pos) {
+exports.updateCloud = function(id, pos) {
+	clouds[id] = pos;
+}
 
+exports.dump = function() {
+	return clouds;
 }

@@ -12,6 +12,9 @@ html
     script(type="text/javascript")
         $(".collapse").collapse();
         $('.dropdown-toggle').dropdown();
+        $(function(){
+            cloud = (new Cloud()).init();
+        });
 
     body
     div.navbar.navbar-fixed-top
@@ -33,10 +36,12 @@ html
                                 b.caret
 
                             ul.dropdown-menu
-                                lin
+                                li
                                     a(target="_blank", href="http://socket.io/") Socket.IO
                                 li
                                     a(target="_blank", href="https://github.com/learnboost/socket.io/#express-3x") Socket.IO and Express 3
+                                li
+                                    a(target="_blank", href="http://underscorejs.org/#map") Underscore.js
                                 li
                                     a(target="_blank", href="http://github.com/visionmedia/jade#readme") Jade doc
                                 li
