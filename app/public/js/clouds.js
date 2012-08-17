@@ -1,5 +1,5 @@
 function Cloud () {
-	var socket = io.connect('http://localhost:8080');
+	var socket = io.connect('/');
 	var canvas = undefined;
 	var ctx = undefined;
 	var self = this;
