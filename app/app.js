@@ -49,6 +49,9 @@ app.get('/',function(req, res){
   res.render('index');
 });
 
+app.get('/exec',function(req, res){
+  res.render('progress');
+});
 
 /* 
     Socket.IO 's logic
@@ -56,6 +59,23 @@ app.get('/',function(req, res){
 
 // Object/dictionary in which we store the differents sockets
 var clouds = {};
+
+var exec = function() {
+  var socket = this;
+  tools.log(socket)
+  clouds[socket.id].socket.emit('test', {pourcent: 0});
+
+  var spawn = require('child_process').spawn,
+      e  = spawn('node', ['exec.js']);
+
+  e.stdout.on('data', function (data) {
+      var pourcent = data + "";
+      pourcent = pourcent.slice(0, pourcent.indexOf("\n"));
+      clouds[socket.id].socket.emit('progress', {pourcent: pourcent});
+      console.log(pourcent);
+  });
+
+}
 
 // callback for a position update from a client
 var move = function(pos) {
@@ -83,6 +103,9 @@ var connection = function(socket){
     socket: socket,
     pos: { x: 0, y: 0 }
   };
+
+  //bind exec
+  socket.on('exec', exec);
 
   // bind move event
   socket.on('move', move);

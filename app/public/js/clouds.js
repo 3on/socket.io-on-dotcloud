@@ -24,6 +24,14 @@ function Cloud () {
 		this.move = function(data) {
 			socket.emit('move', data);
 		}
+
+		socket.on('progress', function(data){
+			self.progress(data.pourcent);
+		});
+
+		socket.on('test', function(data){
+			console.log("test", data);
+		});
 	}
 
 	/*
@@ -63,7 +71,7 @@ function Cloud () {
 
 	// Grab the canvas and initiate the context
 	this.init = function(cb){
-		canvas = document.getElementById('clouds')
+		canvas = document.getElementById('clouds');
 		ctx = canvas.getContext('2d');
 
 		// load the images and then call the callback to start the "game"
@@ -99,6 +107,20 @@ function Cloud () {
 				drawCloud(e, 1);
 			}
 		})
+	};
+
+	this.progress = function(pourcent){
+		console.log(pourcent)
+		$("progress").attr('value', pourcent);
+	}
+
+	this.exec = function() {
+		socket.emit('exec');
+	}
+
+	this.initProgress = function(){
+		socketIO = new ioInit();
+		return self;
 	};
 
 }
